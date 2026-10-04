@@ -1,4 +1,12 @@
-const BASE = '/api';
+const API_URL = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
+
+const BASE = `${API_URL}/api`;
+
+if (import.meta.env.DEV && !API_URL) {
+  console.warn(
+    'VITE_API_URL is not set. Falling back to relative /api requests, which the Vite dev proxy forwards to http://localhost:5000. In production this must point at the deployed backend.'
+  );
+}
 
 async function request(path, options = {}) {
   const res = await fetch(`${BASE}${path}`, {
