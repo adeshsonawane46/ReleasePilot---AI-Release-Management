@@ -1,0 +1,206 @@
+.finalbrief-trust-banner {
+  width: 100%;
+  background: linear-gradient(to right, var(--tertiary-container), #004e35, var(--tertiary));
+  color: var(--on-tertiary);
+  padding: var(--space-lg);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  position: relative;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .finalbrief-trust-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.finalbrief-glow {
+  position: absolute;
+  right: -32px;
+  top: -32px;
+  width: 176px;
+  height: 176px;
+  background: rgba(133, 248, 196, 0.1);
+  border-radius: 50%;
+  filter: blur(32px);
+  pointer-events: none;
+}
+.finalbrief-doc {
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  position: relative;
+}
+.finalbrief-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.finalbrief-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.finalbrief-section-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 1rem;
+  font-weight: 600;
+}
+.finalbrief-section-number {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--primary-container);
+  background: var(--surface-container-high);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+.finalbrief-content {
+  padding-left: var(--space-lg);
+}
+.finalbrief-seal {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  background: var(--surface-container-low);
+  padding: var(--space-lg);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+@media (min-width: 768px) {
+  .finalbrief-seal {
+    flex-direction: row;
+  }
+}
+.finalbrief-signoff {
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.finalbrief-gates {
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.finalbrief-gate-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm);
+  border-radius: var(--radius-lg);
+  background: var(--surface-container-low);
+}
+.finalbrief-distribution {
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.finalbrief-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow: hidden;
+}
+.finalbrief-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(19, 27, 46, 0.2);
+  backdrop-filter: blur(4px);
+}
+.finalbrief-drawer {
+  position: fixed;
+  inset-y: 0;
+  right: 0;
+  width: 100%;
+  max-width: 448px;
+  background: var(--surface-container-lowest);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+}
+.finalbrief-drawer-header {
+  padding: var(--space-lg);
+  background: var(--surface-container-low);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.finalbrief-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+.finalbrief-drawer-footer {
+  padding: var(--space-lg);
+  background: var(--surface-container-low);
+  display: flex;
+  justify-content: flex-end;
+}
+.finalbrief-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  position: relative;
+}
+.finalbrief-timeline-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .finalbrief-doc,
+  .finalbrief-doc * {
+    visibility: visible;
+  }
+  .finalbrief-doc {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .finalbrief-trust-banner,
+  .finalbrief-signoff,
+  .finalbrief-gates,
+  .finalbrief-distribution,
+  .finalbrief-drawer-overlay,
+  header,
+  aside {
+    display: none !important;
+  }
+}

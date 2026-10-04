@@ -1,0 +1,185 @@
+.review-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--surface-container-low);
+  box-shadow: var(--shadow-sm);
+}
+.review-banner::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: var(--warning);
+}
+.review-banner-content {
+  padding: var(--space-lg) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+@media (min-width: 768px) {
+  .review-banner-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.review-banner-left {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  min-width: 0;
+}
+.review-banner-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-lg);
+  background: #fef3c7;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.review-reviewer-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: var(--surface-container-lowest);
+  padding: var(--space-sm) var(--space-lg) var(--space-sm) var(--space-sm);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+.review-reviewer-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-lg);
+  background: var(--secondary-container);
+  color: var(--on-secondary-fixed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.review-stat-card {
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.review-statement-card {
+  position: relative;
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.review-statement-card:hover {
+  box-shadow: var(--shadow-md);
+}
+.review-statement-card.selected {
+  box-shadow: var(--shadow-md);
+}
+.review-statement-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+}
+.review-statement-text {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.review-evidence-tags {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+.review-edit-panel {
+  position: sticky;
+  top: var(--space-2xl);
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+.review-edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.review-edit-label {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.review-evidence-item {
+  padding: var(--space-sm);
+  border-radius: var(--radius-lg);
+  background: var(--surface-container-low);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.review-match-widget {
+  background: rgba(242, 243, 255, 0.7);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.review-progress-bar {
+  height: 8px;
+  width: 100%;
+  background: var(--surface-container);
+  border-radius: var(--radius-full);
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  overflow: hidden;
+}
+.review-progress-segment {
+  height: 100%;
+  border-radius: 2px;
+}
+.review-sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 240px;
+  right: 0;
+  background: rgba(250, 248, 255, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+  z-index: 30;
+  padding: 12px var(--gutter-lg);
+}
+@media (max-width: 768px) {
+  .review-sticky-footer { left: 56px; }
+}
