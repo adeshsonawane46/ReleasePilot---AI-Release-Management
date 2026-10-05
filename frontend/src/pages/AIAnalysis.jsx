@@ -264,7 +264,7 @@ export default function AIAnalysis() {
   }, [analysis, claimLog, qaRequested, exceptions, citationNodes, runMeta, showToast]);
 
   return (
-    <div className="page-container" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2xl)', paddingBottom: 120 }}>
+    <div className="page-container analysis-page" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2xl)' }}>
       <div className="analysis-header">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
           <div className="analysis-context-badges">
@@ -552,20 +552,20 @@ export default function AIAnalysis() {
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-sm)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', minWidth: 0 }}>
             <span className="material-symbols-outlined" style={{ fontSize: 20, color: 'var(--primary)' }}>account_tree</span>
             <h2 className="headline-md" style={{ letterSpacing: '-0.015em' }}>Evidence Source Citations & References Map</h2>
           </div>
           <span className="label-sm" style={{ color: 'var(--secondary)' }}>Telemetry DAG View</span>
         </div>
-        <div className="card" style={{ padding: 'var(--space-2xl)', display: 'flex', flexDirection: 'column', gap: 'var(--space-2xl)' }}>
+        <div className="card analysis-citation-card">
           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-md)', padding: 'var(--space-2xl)', background: 'rgba(242, 243, 255, 0.5)', margin: 'calc(-1 * var(--space-2xl))', paddingBottom: 'var(--space-2xl)', borderRadius: 'var(--radius-xl) var(--radius-xl) 0 0' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'var(--space-md)', minWidth: 0 }}>
               <span className="label-md" style={{ fontWeight: 600 }}>Interactive Citation Trace</span>
               <span className="badge badge-neutral">v2.4 Graph Index</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }} className="code-sm">
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'var(--space-md)' }} className="code-sm">
               <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--secondary)' }}>
                 <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--tertiary-container)' }} /> Verified
               </span>
@@ -618,11 +618,11 @@ export default function AIAnalysis() {
       </div>
 
       <div className="analysis-sticky-bar">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)', minWidth: 0 }}>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--primary-container)', color: 'var(--on-primary-container)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <span className="material-symbols-outlined" style={{ fontSize: 18 }}>verified</span>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}>
             <span className="label-md" style={{ fontWeight: 600 }}>
               {activeClaim ? `Resolve ${analysis.unsupportedClaims.length} blocking claim(s) before drafting briefs` : 'All blocking claims resolved - ready to draft'}
             </span>
@@ -632,7 +632,7 @@ export default function AIAnalysis() {
             </span>
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+        <div className="action-row">
           <button className="btn btn-secondary" onClick={saveDraft}>Save Draft</button>
           <Link to="/briefs" className="btn btn-primary">
             <span className="material-symbols-outlined" style={{ fontSize: 18 }}>auto_stories</span>

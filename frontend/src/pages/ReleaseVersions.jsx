@@ -93,17 +93,17 @@ export default function ReleaseVersions() {
         </div>
       </div>
 
-      <div className="grid" style={{ gridTemplateColumns: 'repeat(12, 1fr)', alignItems: 'start' }}>
-        <div style={{ gridColumn: 'span 8', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+      <div className="layout-grid" style={{ alignItems: 'start' }}>
+        <div className="col-main" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
           <div className="versions-filter-bar">
             <div className="versions-search-wrap">
               <span className="material-symbols-outlined">search</span>
               <input className="versions-search-input" placeholder="Search version, tag, PR, commit..." value={search} onChange={(e) => setSearch(e.target.value)} />
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', width: '100%', flexWrap: 'wrap' }}>
+            <div className="versions-filters">
               <select
                 className="select"
-                style={{ height: 36, paddingLeft: 28 }}
+                style={{ height: 36 }}
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
               >
@@ -113,7 +113,7 @@ export default function ReleaseVersions() {
               </select>
               <select
                 className="select"
-                style={{ height: 36, paddingLeft: 28 }}
+                style={{ height: 36 }}
                 value={branchFilter}
                 onChange={(e) => setBranchFilter(e.target.value)}
               >
@@ -129,7 +129,7 @@ export default function ReleaseVersions() {
           </div>
 
           <div className="versions-table-card">
-            <div style={{ overflowX: 'auto' }}>
+            <div className="table-wrap">
               <table className="table">
                 <thead>
                   <tr>
@@ -182,7 +182,7 @@ export default function ReleaseVersions() {
           </div>
 
           <div className="versions-cadence-card">
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                 <span className="material-symbols-outlined" style={{ color: 'var(--primary-container)', fontSize: 20 }}>insights</span>
                 <span className="headline-sm">Cadence & Version Drift Metrics</span>
@@ -211,10 +211,10 @@ export default function ReleaseVersions() {
           </div>
         </div>
 
-        <div style={{ gridColumn: 'span 4', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', position: 'sticky', top: 'var(--space-2xl)' }}>
+        <div className="col-side versions-side-col" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
           <div className="versions-inspector">
             <div className="versions-inspector-header">
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                 <span className="label-sm" style={{ textTransform: 'uppercase', letterSpacing: '0.02em', fontWeight: 600 }}>Snapshot Inspector</span>
                 <span className="badge badge-info" style={{ background: 'var(--secondary-container)', color: 'var(--on-secondary-fixed)', fontWeight: 600 }}>Current Target</span>
               </div>
@@ -261,7 +261,7 @@ export default function ReleaseVersions() {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                 <span className="headline-sm">Revision History</span>
                 <span className="code-sm" style={{ color: 'var(--on-surface-variant)' }}>3 Events Logged</span>
               </div>
@@ -269,7 +269,7 @@ export default function ReleaseVersions() {
                 {revisions.map((r) => (
                   <div key={r.revision} className="versions-timeline-item">
                     <span className="versions-timeline-dot" style={{ background: r.color }} />
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                       <span className="code-sm" style={{ fontWeight: 600, color: r.color === 'var(--primary-container)' ? 'var(--primary)' : 'var(--on-surface)' }}>{r.revision}</span>
                       <span className="code-sm" style={{ color: 'var(--on-surface-variant)' }}>{r.time}</span>
                     </div>
@@ -312,45 +312,23 @@ export default function ReleaseVersions() {
       </div>
 
       {activeSnapshot && createPortal(
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          background: 'rgba(15, 23, 42, 0.72)',
-          backdropFilter: 'blur(8px)',
-          display: 'grid',
-          placeItems: 'center',
-          zIndex: 9999,
-          padding: 'var(--space-lg)'
-        }} onClick={() => setActiveSnapshot(null)}>
-          <div className="card" style={{
-            maxWidth: 620,
-            width: '100%',
-            background: 'var(--surface-container-lowest)',
-            borderRadius: 'var(--radius-xl)',
-            padding: 'var(--space-xl)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 'var(--space-lg)',
-            boxShadow: 'var(--shadow-lg)'
-          }} onClick={(e) => e.stopPropagation()}>
+        <div className="snapshot-overlay" onClick={() => setActiveSnapshot(null)}>
+          <div className="snapshot-panel card" onClick={(e) => e.stopPropagation()}>
 
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: 'var(--space-md)' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-between', gap: 'var(--space-sm)', borderBottom: '1px solid var(--border)', paddingBottom: 'var(--space-md)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--space-sm)' }}>
                   <span className="headline-lg" style={{ color: 'var(--primary)' }}>Snapshot {activeSnapshot.version}</span>
                   <StatusBadge status={activeSnapshot.status} />
                 </div>
                 <span className="body-md" style={{ color: 'var(--on-surface-variant)' }}>{activeSnapshot.name}</span>
               </div>
-              <button className="icon-btn" onClick={() => setActiveSnapshot(null)}>
+              <button className="icon-btn" style={{ flexShrink: 0 }} onClick={() => setActiveSnapshot(null)} aria-label="Close snapshot">
                 <span className="material-symbols-outlined">close</span>
               </button>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-md)' }}>
+            <div className="snapshot-meta-grid">
               <div style={{ background: 'var(--surface-container-low)', padding: 'var(--space-md)', borderRadius: 'var(--radius-lg)' }}>
                 <span className="label-sm" style={{ color: 'var(--outline)' }}>Git Commit SHA</span>
                 <div className="code-md" style={{ fontWeight: 600, color: 'var(--primary)', marginTop: 4 }}>

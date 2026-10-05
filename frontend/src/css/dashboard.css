@@ -63,6 +63,7 @@
 .dashboard-search-wrap {
   position: relative;
   flex: 1;
+  min-width: 0;
   max-width: 400px;
 }
 .dashboard-search-wrap .material-symbols-outlined {
@@ -75,6 +76,7 @@
 }
 .dashboard-search-input {
   width: 100%;
+  min-width: 0;
   height: 32px;
   padding-left: 32px;
   padding-right: 12px;
@@ -84,6 +86,7 @@
   font-size: 0.75rem;
   color: var(--on-surface);
   transition: all 0.15s ease;
+  font-family: var(--font-sans);
 }
 .dashboard-search-input:focus {
   outline: none;
@@ -93,7 +96,13 @@
 .dashboard-filters {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-sm);
+  min-width: 0;
+}
+.dashboard-filters .select {
+  flex: 1 1 8rem;
+  min-width: 0;
 }
 .dashboard-table-card {
   border-radius: var(--radius-xl);
@@ -109,8 +118,10 @@
   background: var(--surface-container-lowest);
   border-top: 1px solid var(--border);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-sm);
   color: var(--secondary);
   font-size: 0.875rem;
 }
@@ -122,11 +133,14 @@
   padding: var(--space-xl);
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 .dashboard-activity-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
   padding-bottom: var(--space-sm);
   margin-bottom: var(--space-sm);
   border-bottom: 1px solid #f1f5f9;
@@ -164,11 +178,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 0;
 }
 .dashboard-health-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
   padding-bottom: var(--space-sm);
   margin-bottom: var(--space-sm);
   border-bottom: 1px solid #f1f5f9;
@@ -177,6 +194,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-md);
   margin: var(--space-sm) 0;
 }
 .dashboard-health-bars {
@@ -193,6 +211,7 @@
 .dashboard-health-bar-labels {
   display: flex;
   justify-content: space-between;
+  gap: var(--space-sm);
   font-size: 0.875rem;
 }
 .dashboard-health-footer {
@@ -200,15 +219,17 @@
   padding-top: var(--space-sm);
   border-top: 1px solid #f1f5f9;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-sm);
 }
 .impact-high {
   display: inline-flex;
   align-items: center;
   padding: 2px 8px;
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   background: var(--danger-bg);
@@ -220,7 +241,7 @@
   align-items: center;
   padding: 2px 8px;
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   background: var(--info-bg);
@@ -232,7 +253,7 @@
   align-items: center;
   padding: 2px 8px;
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   background: #f1f5f9;

@@ -208,7 +208,7 @@ export default function Dashboard() {
             </button>
           </div>
         </div>
-        <div style={{ overflowX: 'auto' }}>
+        <div className="table-wrap">
           <table className="table">
             <thead>
               <tr>
@@ -251,7 +251,7 @@ export default function Dashboard() {
                   <td>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <span>{new Date(r.updatedAt || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                      <span style={{ color: 'var(--secondary)', fontSize: 11 }}>{r.author || 'Dev Team'}</span>
+                      <span style={{ color: 'var(--secondary)', fontSize: '0.75rem' }}>{r.author || 'Dev Team'}</span>
                     </div>
                   </td>
                   <td style={{ textAlign: 'right' }}>
@@ -297,8 +297,8 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="grid" style={{ gridTemplateColumns: 'repeat(12, 1fr)' }}>
-        <div className="dashboard-activity" style={{ gridColumn: 'span 7' }}>
+      <div className="layout-grid">
+        <div className="dashboard-activity col-7">
           <div className="dashboard-activity-header">
             <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
               <span className="material-symbols-outlined" style={{ fontSize: 20, color: 'var(--secondary)' }}>history</span>
@@ -319,7 +319,7 @@ export default function Dashboard() {
                   </span>
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-sm)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', gap: 'var(--space-sm)' }}>
                     <span className="label-md" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       <strong>{item.actor}</strong> {item.action}
                     </span>
@@ -332,7 +332,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="dashboard-health" style={{ gridColumn: 'span 5' }}>
+        <div className="dashboard-health col-5">
           <div>
             <div className="dashboard-health-header">
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>

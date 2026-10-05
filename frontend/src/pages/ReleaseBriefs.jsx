@@ -135,7 +135,7 @@ export default function ReleaseBriefs() {
 
       {/* Tab Bar */}
       <div className="briefs-tab-bar">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <div className="briefs-tabs">
           <button className={`briefs-tab ${activeTab === 'internal' ? 'active' : ''}`} onClick={() => setActiveTab('internal')}>
             <span className="material-symbols-outlined" style={{ fontSize: 18 }}>terminal</span>
             Internal Technical
@@ -146,7 +146,7 @@ export default function ReleaseBriefs() {
             Client / Stakeholder
           </button>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', paddingRight: 'var(--space-sm)' }}>
+        <div className="briefs-tab-meta">
           <span className="code-sm" style={{ color: 'var(--on-surface-variant)' }}>Generated 4m ago via ReleasePilot Core AI</span>
           <button className="icon-btn" style={{ width: 'auto', height: 'auto', border: 'none', background: 'transparent', cursor: 'pointer' }} onClick={handleCopy} title="Copy brief markdown">
             <span className="material-symbols-outlined" style={{ fontSize: 18 }}>content_copy</span>
@@ -155,8 +155,8 @@ export default function ReleaseBriefs() {
       </div>
 
       {/* Main Grid */}
-      <div className="grid" style={{ gridTemplateColumns: 'repeat(12, 1fr)', alignItems: 'start' }}>
-        <div style={{ gridColumn: 'span 8', display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+      <div className="layout-grid" style={{ alignItems: 'start' }}>
+        <div className="col-main" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
           <article className="card" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
             <div className="briefs-doc-header">
               <div>
@@ -210,7 +210,7 @@ export default function ReleaseBriefs() {
                   ].map((item) => (
                     <li key={item.id} className="briefs-evidence-item">
                       <span className="material-symbols-outlined" style={{ color: 'var(--primary)', fontSize: 18, marginTop: 2 }}>add_circle</span>
-                      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-sm)' }}>
+                      <div style={{ flex: 1, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', gap: 'var(--space-sm)' }}>
                         <span style={{ fontWeight: 500 }}>{item.title}</span>
                         <button className="citation-tag" onClick={() => handleCitationClick(item.id)}>
                           <span className="material-symbols-outlined" style={{ fontSize: 13 }}>dataset</span>
@@ -232,7 +232,7 @@ export default function ReleaseBriefs() {
                   ].map((item) => (
                     <li key={item.id} className="briefs-evidence-item">
                       <span className="material-symbols-outlined" style={{ color: 'var(--tertiary)', fontSize: 18, marginTop: 2 }}>check_circle</span>
-                      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-sm)' }}>
+                      <div style={{ flex: 1, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', gap: 'var(--space-sm)' }}>
                         <span>{item.title}</span>
                         <button className="citation-tag" onClick={() => handleCitationClick(item.id)}>
                           <span className="material-symbols-outlined" style={{ fontSize: 13 }}>bug_report</span>
@@ -247,7 +247,7 @@ export default function ReleaseBriefs() {
               {/* Section 4: Behaviour Changes */}
               <section className="briefs-section">
                 <h3 className="briefs-section-label">4. Behaviour Changes</h3>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 'var(--space-lg)', borderRadius: 'var(--radius-lg)', background: 'rgba(242, 243, 255, 0.4)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', padding: 'var(--space-lg)', borderRadius: 'var(--radius-lg)', background: 'rgba(242, 243, 255, 0.4)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                     <span className="material-symbols-outlined" style={{ color: 'var(--secondary)', fontSize: 20 }}>schedule</span>
                     <span className="body-md">
@@ -272,7 +272,7 @@ export default function ReleaseBriefs() {
                 </div>
                 <div className="grid grid-2" style={{ marginTop: 4, gap: 'var(--space-md)' }}>
                   <div className="card" style={{ padding: 'var(--space-lg)' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: 4 }}>
                       <span className="body-sm" style={{ color: 'var(--on-surface-variant)' }}>Automated Test Pass Rate</span>
                       <span className="code-sm" style={{ fontWeight: 700, color: 'var(--tertiary)' }}>94.0%</span>
                     </div>
@@ -281,7 +281,7 @@ export default function ReleaseBriefs() {
                     </div>
                     <span className="code-sm" style={{ color: 'var(--on-surface-variant)', fontWeight: 500 }}>47 / 50 tests passed - 3 manual verifications</span>
                   </div>
-                  <div className="card" style={{ padding: 'var(--space-lg)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div className="card" style={{ padding: 'var(--space-lg)', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                     <span className="body-sm" style={{ color: 'var(--on-surface-variant)', marginBottom: 4 }}>Target Matrix Results</span>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-lg)' }}>
                       {['Chrome v118', 'Firefox v120'].map((browser) => (
@@ -354,9 +354,9 @@ export default function ReleaseBriefs() {
         </div>
 
         {/* Sidebar Drawer */}
-        <aside style={{ gridColumn: 'span 4', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', position: 'sticky', top: 'var(--space-2xl)' }}>
+        <aside className="col-side briefs-side-col" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
           <div className="briefs-evidence-drawer">
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                 <span className="material-symbols-outlined" style={{ color: 'var(--primary)', fontSize: 20 }}>find_in_page</span>
                 <h2 className="headline-sm" style={{ fontWeight: 600 }}>Supporting Evidence</h2>
@@ -370,7 +370,7 @@ export default function ReleaseBriefs() {
             </div>
 
             <div className={`briefs-evidence-panel ${activeCitationId === 'qa-3' ? 'highlight' : ''}`} id="evidence-panel">
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                 <span className="code-sm" style={{ color: 'var(--on-surface-variant)', fontWeight: 500 }}>Active Reference</span>
                 <span className="code-sm" style={{ padding: '2px 10px', borderRadius: 'var(--radius-full)', background: 'var(--primary-container)', color: 'var(--on-primary)', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
                   {activeCitation.title}
@@ -382,21 +382,21 @@ export default function ReleaseBriefs() {
               </div>
               <div className="briefs-evidence-meta">
                 <div className="briefs-evidence-meta-item">
-                  <span style={{ color: 'var(--on-surface-variant)', fontSize: 10, textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.02em' }}>Source Type</span>
+                  <span style={{ color: 'var(--on-surface-variant)', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.02em' }}>Source Type</span>
                   <span style={{ fontWeight: 500 }}>{activeCitation.source}</span>
                 </div>
                 <div className="briefs-evidence-meta-item">
-                  <span style={{ color: 'var(--on-surface-variant)', fontSize: 10, textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.02em' }}>Confidence</span>
+                  <span style={{ color: 'var(--on-surface-variant)', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.02em' }}>Confidence</span>
                   <span style={{ color: 'var(--tertiary)', fontWeight: 700 }}>{activeCitation.confidence}</span>
                 </div>
-                <div className="briefs-evidence-meta-item" style={{ gridColumn: 'span 2' }}>
-                  <span style={{ color: 'var(--on-surface-variant)', fontSize: 10, textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.02em' }}>Git Anchor</span>
-                  <span style={{ color: 'var(--primary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
+                <div className="briefs-evidence-meta-item wide">
+                  <span style={{ color: 'var(--on-surface-variant)', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.02em' }}>Git Anchor</span>
+                  <span style={{ color: 'var(--primary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4, overflowWrap: 'anywhere' }}>
                     <span className="material-symbols-outlined" style={{ fontSize: 14 }}>commit</span> {activeCitation.git}
                   </span>
                 </div>
-                <div className="briefs-evidence-meta-item" style={{ gridColumn: 'span 2' }}>
-                  <span style={{ color: 'var(--on-surface-variant)', fontSize: 10, textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.02em' }}>Artifact</span>
+                <div className="briefs-evidence-meta-item wide">
+                  <span style={{ color: 'var(--on-surface-variant)', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.02em' }}>Artifact</span>
                   <span style={{ fontFamily: 'var(--font-mono)' }}>{activeCitation.artifact}</span>
                 </div>
               </div>
@@ -431,7 +431,7 @@ export default function ReleaseBriefs() {
       {isEditing && (
         <div className="compare-modal-overlay" onClick={() => setIsEditing(false)}>
           <div className="compare-modal" style={{ maxWidth: 600 }} onClick={(e) => e.stopPropagation()}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                 <span className="material-symbols-outlined" style={{ color: 'var(--primary)', fontSize: 24 }}>edit_note</span>
                 <div>

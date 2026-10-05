@@ -66,11 +66,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 0;
 }
 .analysis-metric-label {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px;
   color: var(--secondary);
 }
 .analysis-metric-value {
@@ -171,23 +174,76 @@
   flex-direction: column;
   gap: var(--space-sm);
 }
+.analysis-citation-card {
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  min-width: 0;
+}
+/* Clearance for the fixed action bar, which grows taller when it stacks */
+.analysis-page {
+  padding-bottom: 7.5rem;
+}
+
+@media (max-width: 640px) {
+  .analysis-page {
+    padding-bottom: 12rem;
+  }
+  .analysis-citation-card {
+    padding: var(--space-lg);
+  }
+  .analysis-callout,
+  .analysis-impact-card,
+  .analysis-risk-card,
+  .analysis-metric-card {
+    padding: var(--space-lg);
+  }
+  /* Card padding shrank above, so the bleed footer margin must shrink with it */
+  .analysis-impact-footer {
+    margin: var(--space-md) calc(-1 * var(--space-lg)) calc(-1 * var(--space-lg));
+    padding: var(--space-sm) var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .analysis-actions > .btn,
+  .analysis-actions > a {
+    flex: 1 1 100%;
+  }
+}
+
 .analysis-sticky-bar {
   position: fixed;
   bottom: 0;
-  left: 240px;
+  left: var(--sidebar-w);
   right: 0;
-  z-index: 30;
-  background: rgba(250, 248, 255, 0.9);
+  z-index: 45;
+  background: color-mix(in srgb, var(--surface-container-lowest) 92%, transparent);
   backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-lg);
-  padding: 14px var(--space-2xl);
+  box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.08);
+  padding: 14px var(--gutter-lg);
+  padding-left: max(var(--gutter-lg), var(--sidebar-w));
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
 }
-@media (max-width: 768px) {
-  .analysis-sticky-bar { left: 56px; }
+.analysis-sticky-bar > * {
+  min-width: 0;
 }
+@media (max-width: 640px) {
+  .analysis-sticky-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding-bottom: calc(14px + var(--safe-b));
+  }
+  .analysis-sticky-bar > .btn {
+    flex: 1 1 auto;
+  }
+}
+
 
 .loading-spinner {
   animation: spin 1s linear infinite;

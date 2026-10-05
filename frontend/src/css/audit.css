@@ -79,8 +79,8 @@
 
 .audit-search-wrap {
   position: relative;
-  flex: 1;
-  min-width: 280px;
+  flex: 1 1 16rem;
+  min-width: 0;
 }
 
 .audit-search-wrap .material-symbols-outlined {
@@ -95,6 +95,7 @@
 
 .audit-search-input {
   width: 100%;
+  min-width: 0;
   padding-left: 40px;
   padding-right: 40px;
   height: 40px;
@@ -104,6 +105,7 @@
   font-size: 0.875rem;
   color: var(--on-surface);
   transition: all 0.2s ease;
+  font-family: var(--font-sans);
 }
 
 .audit-search-input:focus {
@@ -144,7 +146,7 @@
   background: rgba(0, 94, 64, 0.1);
   color: var(--tertiary);
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 500;
   white-space: nowrap;
 }
@@ -173,7 +175,7 @@
   padding: var(--space-md) var(--space-lg);
   text-align: left;
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -190,6 +192,20 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
+}
+.audit-th-sort {
+  cursor: pointer;
+}
+/*
+ * Column widths are a desktop affordance only. On phones the table falls back
+ * to a min-width and scrolls horizontally inside .table-wrap.
+ */
+@media (min-width: 768px) {
+  .audit-w-timestamp { width: 112px; }
+  .audit-w-actor { width: 240px; }
+  .audit-w-action { width: 160px; }
+  .audit-w-release { width: 96px; }
+  .audit-w-attestation { width: 176px; }
 }
 
 .audit-sort-icon {
@@ -222,7 +238,7 @@
 }
 
 .audit-date-sub {
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   color: var(--outline);
   margin-top: 2px;
 }
@@ -250,6 +266,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+@media (max-width: 768px) {
+  /* Let the details column breathe rather than truncating every value */
+  .audit-details-cell {
+    max-width: 18rem;
+  }
+  .audit-table th,
+  .audit-table td {
+    padding: var(--space-sm) var(--space-md);
+  }
 }
 
 .audit-attestation-btn {
@@ -307,12 +333,16 @@
 .audit-pagination {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 4px;
+  max-width: 100%;
 }
 
 .audit-page-btn {
   min-width: 32px;
   height: 32px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -409,9 +439,10 @@
   box-shadow: var(--shadow-xl);
   border: 1px solid var(--border);
   width: 100%;
-  max-width: 560px;
-  max-height: 80vh;
+  max-width: min(560px, 100%);
+  max-height: min(80vh, 80dvh);
   overflow-y: auto;
+  overscroll-behavior: contain;
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -419,6 +450,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-sm);
   padding: var(--space-lg);
   border-bottom: 1px solid var(--border);
   position: sticky;
@@ -431,6 +463,23 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  /* Bottom sheet on phones */
+  .audit-modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .audit-modal {
+    max-height: 92dvh;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    border-bottom: none;
+  }
+  .audit-modal-body {
+    padding-bottom: calc(var(--space-lg) + var(--safe-b));
+  }
 }
 
 .audit-modal-row {
@@ -441,7 +490,7 @@
 
 .audit-modal-label {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -450,6 +499,7 @@
 
 .audit-modal-value {
   color: var(--on-surface);
+  overflow-wrap: anywhere;
 }
 
 .audit-live-toast {
@@ -457,9 +507,19 @@
   bottom: 24px;
   right: 24px;
   z-index: 100;
-  max-width: 400px;
+  max-width: min(400px, calc(100vw - 3rem));
   pointer-events: auto;
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (max-width: 640px) {
+  /* Dock to the top so it never collides with the global bottom toast */
+  .audit-live-toast {
+    left: var(--gutter);
+    right: var(--gutter);
+    top: calc(3.5rem + var(--gutter) + var(--safe-b));
+    bottom: auto;
+    max-width: none;
+  }
 }
 
 .audit-live-toast-inner {
@@ -516,6 +576,15 @@
 .audit-rows-btn:hover {
   background: var(--surface-container);
   border-color: var(--outline);
+}
+
+@media (pointer: coarse) {
+  .audit-rows-btn {
+    height: var(--tap);
+  }
+  .audit-rows-dropdown {
+    min-width: max(160px, 44vw);
+  }
 }
 
 .audit-rows-chevron {

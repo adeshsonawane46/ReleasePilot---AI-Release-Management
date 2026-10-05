@@ -160,7 +160,7 @@ export default function CompareReleases() {
       <div className="compare-selector-bar">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', flex: 1 }}>
           <div className="compare-version-select">
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <span className="label-sm" style={{ textTransform: 'uppercase', letterSpacing: '0.02em', fontWeight: 600 }}>Base Baseline (A)</span>
               <span className="code-sm" style={{ color: 'var(--secondary)' }}>commit 8f3c1a2</span>
             </div>
@@ -179,7 +179,7 @@ export default function CompareReleases() {
           </div>
 
           <div className="compare-version-select">
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <span className="label-sm" style={{ textTransform: 'uppercase', letterSpacing: '0.02em', fontWeight: 600 }}>Target Release (B)</span>
               <span className="badge badge-info" style={{ fontWeight: 600 }}>Target Gate</span>
             </div>
@@ -202,7 +202,7 @@ export default function CompareReleases() {
       {/* Stat Cards */}
       <div className="grid grid-4">
         <div className="compare-stat-card">
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span className="label-sm" style={{ textTransform: 'uppercase', letterSpacing: '0.02em', fontWeight: 600 }}>Added Delta</span>
               <span className="headline-xl" style={{ marginTop: 4 }}>{comparison.summary.added}</span>
@@ -221,7 +221,7 @@ export default function CompareReleases() {
         </div>
 
         <div className="compare-stat-card">
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span className="label-sm" style={{ textTransform: 'uppercase', letterSpacing: '0.02em', fontWeight: 600 }}>Changed Specs</span>
               <span className="headline-xl" style={{ marginTop: 4 }}>{comparison.summary.changed}</span>
@@ -238,7 +238,7 @@ export default function CompareReleases() {
         </div>
 
         <div className="compare-stat-card">
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span className="label-sm" style={{ textTransform: 'uppercase', letterSpacing: '0.02em', fontWeight: 600 }}>Removed Spec</span>
               <span className="headline-xl" style={{ marginTop: 4 }}>{comparison.summary.removed}</span>
@@ -255,7 +255,7 @@ export default function CompareReleases() {
         </div>
 
         <div className="compare-stat-card">
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span className="label-sm" style={{ textTransform: 'uppercase', letterSpacing: '0.02em', fontWeight: 600 }}>Stale Statements</span>
               <span className="headline-xl" style={{ marginTop: 4, color: activeStaleCount > 0 ? 'var(--error)' : 'var(--tertiary)' }}>
@@ -277,15 +277,15 @@ export default function CompareReleases() {
       </div>
 
       {/* Grid Comparison Sections */}
-      <div className="grid" style={{ gridTemplateColumns: 'repeat(12, 1fr)' }}>
+      <div className="layout-grid">
         
         {/* Left 7 Columns */}
-        <div style={{ gridColumn: 'span 7', display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+        <div className="col-7" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
           
           {/* Feature Changes */}
           {activeFilters.features && (
             <div className="card" style={{ padding: 'var(--space-xl)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 'var(--space-sm)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', paddingBottom: 'var(--space-sm)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                   <span className="material-symbols-outlined" style={{ color: 'var(--primary)', fontSize: 20 }}>new_releases</span>
                   <h2 className="headline-sm">Feature Changes</h2>
@@ -298,7 +298,7 @@ export default function CompareReleases() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
                 {comparison.addedFeatures.map((f) => (
                   <div key={f.title} className="compare-feature-item">
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-sm)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', gap: 'var(--space-sm)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                         <span className="code-sm" style={{ fontWeight: 600, color: 'var(--tertiary)', background: 'var(--surface-container-lowest)', padding: '2px 6px', borderRadius: 'var(--radius-sm)', boxShadow: 'var(--shadow-sm)' }}>[ADDED]</span>
                         <span className="headline-sm" style={{ fontSize: 15 }}>{f.title}</span>
@@ -330,7 +330,7 @@ export default function CompareReleases() {
           {/* Bug Fixes */}
           {activeFilters.bugFixes && (
             <div className="card" style={{ padding: 'var(--space-xl)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 'var(--space-sm)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', paddingBottom: 'var(--space-sm)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                   <span className="material-symbols-outlined" style={{ color: 'var(--primary)', fontSize: 20 }}>pest_control</span>
                   <h2 className="headline-sm">Resolved Bug Fixes</h2>
@@ -342,7 +342,7 @@ export default function CompareReleases() {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
                 {comparison.bugFixes.map((b) => (
-                  <div key={b.bugId} className="compare-feature-item" style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'var(--space-md)' }}>
+                  <div key={b.bugId} className="compare-feature-item" style={{ flexDirection: 'row', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-between', gap: 'var(--space-md)' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                         <span className="code-sm" style={{ fontWeight: 600, color: 'var(--tertiary)', background: 'var(--surface-container-lowest)', padding: '2px 6px', borderRadius: 'var(--radius-sm)', boxShadow: 'var(--shadow-sm)' }}>[FIXED]</span>
@@ -367,7 +367,7 @@ export default function CompareReleases() {
           {/* Behaviour Changes */}
           {activeFilters.behaviour && (
             <div className="card" style={{ padding: 'var(--space-xl)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 'var(--space-sm)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', paddingBottom: 'var(--space-sm)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                   <span className="material-symbols-outlined" style={{ color: 'var(--primary)', fontSize: 20 }}>sync_alt</span>
                   <h2 className="headline-sm">Behaviour Changes</h2>
@@ -379,7 +379,7 @@ export default function CompareReleases() {
 
               {comparison.behaviourChanges.map((c) => (
                 <div key={c.title} className="compare-feature-item">
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-sm)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', gap: 'var(--space-sm)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                       <span className="code-sm" style={{ fontWeight: 600, color: 'var(--primary)', background: 'var(--surface-container-lowest)', padding: '2px 6px', borderRadius: 'var(--radius-sm)', boxShadow: 'var(--shadow-sm)' }}>[CHANGED]</span>
                       <span className="headline-sm" style={{ fontSize: 15 }}>{c.title}</span>
@@ -389,7 +389,7 @@ export default function CompareReleases() {
 
                   <p className="body-md" style={{ color: 'var(--on-surface-variant)' }}>{c.description}</p>
                   
-                  <div style={{ padding: 'var(--space-lg)', borderRadius: 'var(--radius-lg)', background: 'var(--surface-container-lowest)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: 'var(--shadow-sm)' }}>
+                  <div style={{ padding: 'var(--space-lg)', borderRadius: 'var(--radius-lg)', background: 'var(--surface-container-lowest)', display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', boxShadow: 'var(--shadow-sm)' }}>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <span className="label-sm" style={{ color: 'var(--on-surface-variant)' }}>{versionA} Standard</span>
                       <span className="code-md" style={{ color: 'var(--secondary)', textDecoration: 'line-through', fontWeight: 600 }}>{c.oldValue}</span>
@@ -411,7 +411,7 @@ export default function CompareReleases() {
           {/* Limitations */}
           {activeFilters.limitations && (
             <div className="card" style={{ padding: 'var(--space-xl)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 'var(--space-sm)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', paddingBottom: 'var(--space-sm)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                   <span className="material-symbols-outlined" style={{ color: 'var(--secondary)', fontSize: 20 }}>warning_amber</span>
                   <h2 className="headline-sm">Limitation Changes</h2>
@@ -423,7 +423,7 @@ export default function CompareReleases() {
 
               {comparison.limitations.map((l) => (
                 <div key={l.title} className="compare-feature-item" style={{ gap: 4 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-sm)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', gap: 'var(--space-sm)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                       <span className="code-sm" style={{ fontWeight: 600, color: 'var(--secondary)', background: 'var(--surface-container-lowest)', padding: '2px 6px', borderRadius: 'var(--radius-sm)', boxShadow: 'var(--shadow-sm)' }}>[ADDED]</span>
                       <span className="headline-sm" style={{ fontSize: 15 }}>{l.title}</span>
@@ -445,13 +445,13 @@ export default function CompareReleases() {
         </div>
 
         {/* Right 5 Columns */}
-        <div style={{ gridColumn: 'span 5', display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+        <div className="col-5" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
           
           {/* Stale Statements Card */}
           {activeFilters.stale && (
             <div className="card" style={{ padding: 'var(--space-xl)', display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                     <span className="material-symbols-outlined" style={{ color: activeStaleCount > 0 ? 'var(--error)' : 'var(--tertiary)', fontSize: 22 }}>history_toggle_off</span>
                     <h2 className="headline-md" style={{ letterSpacing: '-0.015em' }}>Stale Statements</h2>
@@ -469,7 +469,7 @@ export default function CompareReleases() {
                 const isResolved = resolvedStale.has(s.id);
                 return (
                   <div key={s.id} className="compare-stale-card" style={{ opacity: isResolved ? 0.6 : 1, border: isResolved ? '1px solid var(--outline-variant)' : '1px solid rgba(225, 29, 72, 0.2)' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                       <span className={`badge ${isResolved ? 'badge-success' : 'badge-danger'}`} style={{ fontWeight: 700 }}>
                         <span className="dot" style={{ background: isResolved ? 'var(--tertiary)' : 'var(--error)' }} />
                         {isResolved ? 'RESOLVED & SYNCED' : 'STALE STATEMENT'}
@@ -487,7 +487,7 @@ export default function CompareReleases() {
                       <p className="body-sm">{s.reason}</p>
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 4 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', paddingTop: 4 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 4 }} className="code-sm">
                         <span>Trigger:</span>
                         <span style={{ color: 'var(--primary)', fontWeight: 600 }}>{s.trigger}</span>
@@ -514,7 +514,7 @@ export default function CompareReleases() {
                 );
               })}
 
-              <div style={{ padding: 'var(--space-lg)', borderRadius: 'var(--radius-xl)', background: 'var(--surface-container-low)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ padding: 'var(--space-lg)', borderRadius: 'var(--radius-xl)', background: 'var(--surface-container-low)', display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                   <span className="material-symbols-outlined" style={{ color: 'var(--secondary)', fontSize: 20 }}>psychology</span>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -537,7 +537,7 @@ export default function CompareReleases() {
                 { label: 'Database Migrations', value: '2 Non-destructive (Pg 16)', color: 'var(--secondary)' },
                 { label: 'Compliance Delta', value: 'SOC2 Type II Compatible', color: 'var(--tertiary)' },
               ].map((row) => (
-                <div key={row.label} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 'var(--space-xs) 0' }} className="body-sm">
+                <div key={row.label} style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', padding: 'var(--space-xs) 0' }} className="body-sm">
                   <span style={{ color: 'var(--on-surface-variant)' }}>{row.label}</span>
                   <span className="code-sm" style={{ fontWeight: 600, padding: '2px 8px', borderRadius: 'var(--radius-sm)', background: row.bg || 'transparent', color: row.color }}>{row.value}</span>
                 </div>
@@ -573,7 +573,7 @@ export default function CompareReleases() {
       {showAstModal && (
         <div className="compare-modal-overlay" onClick={() => setShowAstModal(false)}>
           <div className="compare-modal" style={{ maxWidth: 680 }} onClick={(e) => e.stopPropagation()}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                 <span className="material-symbols-outlined" style={{ color: 'var(--primary)', fontSize: 24 }}>code_blocks</span>
                 <div>
@@ -590,7 +590,7 @@ export default function CompareReleases() {
               <pre>{sampleAstDiff}</pre>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <span className="code-sm" style={{ color: 'var(--on-surface-variant)' }}>AST Parsing Engine: v4.2.1 • 100% Syntax Verified</span>
               <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
                 <button
@@ -614,7 +614,7 @@ export default function CompareReleases() {
       {showFilterModal && (
         <div className="compare-modal-overlay" onClick={() => setShowFilterModal(false)}>
           <div className="compare-modal" style={{ maxWidth: 440 }} onClick={(e) => e.stopPropagation()}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                 <span className="material-symbols-outlined" style={{ color: 'var(--primary)', fontSize: 24 }}>tune</span>
                 <div>
@@ -635,7 +635,7 @@ export default function CompareReleases() {
                 { key: 'limitations', label: 'Limitation Changes', count: comparison.limitations.length },
                 { key: 'stale', label: 'Stale Customer Statements', count: comparison.staleStatements.length },
               ].map((item) => (
-                <label key={item.key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 'var(--space-md)', borderRadius: 'var(--radius-lg)', background: 'var(--surface-container-low)', cursor: 'pointer' }}>
+                <label key={item.key} style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', padding: 'var(--space-md)', borderRadius: 'var(--radius-lg)', background: 'var(--surface-container-low)', cursor: 'pointer' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                     <input
                       type="checkbox"
@@ -650,7 +650,7 @@ export default function CompareReleases() {
               ))}
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 8 }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', paddingTop: 8 }}>
               <button
                 className="code-sm"
                 style={{ background: 'none', border: 'none', color: 'var(--primary)', cursor: 'pointer', textDecoration: 'underline' }}
@@ -668,7 +668,7 @@ export default function CompareReleases() {
       {itemDetailModal && (
         <div className="compare-modal-overlay" onClick={() => setItemDetailModal(null)}>
           <div className="compare-modal" onClick={(e) => e.stopPropagation()}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                 <span className="material-symbols-outlined" style={{ color: 'var(--primary)', fontSize: 24 }}>description</span>
                 <div>
@@ -703,7 +703,7 @@ export default function CompareReleases() {
       {modalStatement && (
         <div className="compare-modal-overlay" onClick={() => setModalStatement(null)}>
           <div className="compare-modal" onClick={(e) => e.stopPropagation()}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                 <span className="material-symbols-outlined" style={{ color: 'var(--primary)', fontSize: 24 }}>verified</span>
                 <div>

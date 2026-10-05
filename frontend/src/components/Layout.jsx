@@ -1,4 +1,5 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
 const navItems = [
   { to: '/', label: 'Dashboard', icon: 'dashboard', end: true },
@@ -12,10 +13,52 @@ const navItems = [
   { to: '/audit', label: 'Audit Log', icon: 'receipt_long' },
 ];
 
+const MOBILE_QUERY = '(max-width: 1024px)';
+
 export default function Layout() {
+  const [navOpen, setNavOpen] = useState(false);
+  const location = useLocation();
+
+  // Close the drawer on navigation and whenever we grow past the mobile breakpoint.
+  useEffect(() => {
+    setNavOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!navOpen) return undefined;
+    const mq = window.matchMedia(MOBILE_QUERY);
+    const onChange = (e) => {
+      if (!e.matches) setNavOpen(false);
+    };
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, [navOpen]);
+
+  useEffect(() => {
+    if (!navOpen) return undefined;
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setNavOpen(false);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [navOpen]);
+
+  const activeItem =
+    navItems.find((item) => (item.end ? location.pathname === item.to : location.pathname.startsWith(item.to))) ||
+    navItems[0];
+
   return (
-    <div>
-      <aside className="sidebar">
+    <div className="app-shell">
+      {navOpen && (
+        <button
+          type="button"
+          className="sidebar-scrim"
+          aria-label="Close navigation"
+          onClick={() => setNavOpen(false)}
+        />
+      )}
+
+      <aside className={`sidebar${navOpen ? ' is-open' : ''}`} aria-label="Main navigation">
         <div className="sidebar-logo">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" width="32" height="32">
             <rect width="32" height="32" rx="8" fill="#4338CA" />
@@ -24,6 +67,14 @@ export default function Layout() {
             <path d="M12 16L16 12V20L12 16Z" fill="#EEF2FF" />
           </svg>
           <span className="sidebar-label headline-sm">ReleasePilot</span>
+          <button
+            type="button"
+            className="icon-btn sidebar-close"
+            aria-label="Close navigation"
+            onClick={() => setNavOpen(false)}
+          >
+            <span className="material-symbols-outlined">close</span>
+          </button>
         </div>
         <nav className="sidebar-nav">
           {navItems.map((item) => (
@@ -31,9 +82,10 @@ export default function Layout() {
               key={item.to}
               to={item.to}
               end={item.end}
+              title={item.label}
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
-              <span className="material-symbols-outlined" style={{ fontSize: 20 }}>{item.icon}</span>
+              <span className="material-symbols-outlined" aria-hidden="true">{item.icon}</span>
               <span className="sidebar-label">{item.label}</span>
             </NavLink>
           ))}
@@ -43,9 +95,23 @@ export default function Layout() {
           <div style={{ marginTop: 4 }}>Production Ring 0</div>
         </div>
       </aside>
-      <main className="main-content">
+
+      <div className="main-content">
+        <header className="topbar">
+          <button
+            type="button"
+            className="icon-btn"
+            aria-label="Open navigation"
+            aria-expanded={navOpen}
+            onClick={() => setNavOpen(true)}
+          >
+            <span className="material-symbols-outlined">menu</span>
+          </button>
+          <span className="topbar-title">{activeItem.label}</span>
+          <span className="topbar-spacer" />
+        </header>
         <Outlet />
-      </main>
+      </div>
     </div>
   );
 }

@@ -305,26 +305,26 @@ export default function AuditLogPage() {
       </div>
 
       <div className="audit-table-card">
-        <div style={{ overflowX: 'auto' }}>
+        <div className="table-wrap">
           <table className="table audit-table">
             <thead>
               <tr>
-                <th style={{ width: 112, cursor: 'pointer' }} onClick={() => handleSort('timestamp')}>
+                <th className="audit-th-sort audit-w-timestamp" onClick={() => handleSort('timestamp')}>
                   <span className="audit-th-content">Timestamp <span className="audit-sort-icon">{sortField === 'timestamp' ? (sortDir === 'asc' ? '↑' : '↓') : '↕'}</span></span>
                 </th>
-                <th style={{ width: 240, cursor: 'pointer' }} onClick={() => handleSort('actor')}>
+                <th className="audit-th-sort audit-w-actor" onClick={() => handleSort('actor')}>
                   <span className="audit-th-content">Actor <span className="audit-sort-icon">{sortField === 'actor' ? (sortDir === 'asc' ? '↑' : '↓') : '↕'}</span></span>
                 </th>
-                <th style={{ width: 160, cursor: 'pointer' }} onClick={() => handleSort('action')}>
+                <th className="audit-th-sort audit-w-action" onClick={() => handleSort('action')}>
                   <span className="audit-th-content">Action <span className="audit-sort-icon">{sortField === 'action' ? (sortDir === 'asc' ? '↑' : '↓') : '↕'}</span></span>
                 </th>
-                <th style={{ width: 96, cursor: 'pointer' }} onClick={() => handleSort('release')}>
+                <th className="audit-th-sort audit-w-release" onClick={() => handleSort('release')}>
                   <span className="audit-th-content">Release <span className="audit-sort-icon">{sortField === 'release' ? (sortDir === 'asc' ? '↑' : '↓') : '↕'}</span></span>
                 </th>
-                <th style={{ cursor: 'pointer' }} onClick={() => handleSort('details')}>
+                <th className="audit-th-sort" onClick={() => handleSort('details')}>
                   <span className="audit-th-content">Details <span className="audit-sort-icon">{sortField === 'details' ? (sortDir === 'asc' ? '↑' : '↓') : '↕'}</span></span>
                 </th>
-                <th style={{ textAlign: 'right', width: 176 }}>Attestation</th>
+                <th className="audit-w-attestation" style={{ textAlign: 'right' }}>Attestation</th>
               </tr>
             </thead>
             <tbody>
@@ -393,7 +393,7 @@ export default function AuditLogPage() {
       </div>
 
       <div className="audit-badges-card">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
           <span className="label-sm" style={{ textTransform: 'uppercase', letterSpacing: '0.02em', color: 'var(--on-surface-variant)', fontWeight: 600 }}>
             Action Badges Reference & Severity Matrix
           </span>

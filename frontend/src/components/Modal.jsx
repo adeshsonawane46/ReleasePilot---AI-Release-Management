@@ -11,6 +11,12 @@ export default function Modal({ open, onClose, title, icon, children, footer, ma
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [open, onClose]);
 
+  useEffect(() => {
+    if (!open) return undefined;
+    document.body.classList.add('is-scroll-locked');
+    return () => document.body.classList.remove('is-scroll-locked');
+  }, [open]);
+
   if (!open) return null;
 
   return createPortal(

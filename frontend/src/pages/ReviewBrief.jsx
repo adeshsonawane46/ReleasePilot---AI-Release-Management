@@ -285,7 +285,7 @@ export default function ReviewBrief() {
   ];
 
   return (
-    <div style={{ paddingBottom: 110 }}>
+    <div className="review-page">
       {/* Top Banner */}
       <div style={{ padding: 'var(--space-lg) var(--gutter-lg) 0' }}>
         <div className="review-banner">
@@ -338,10 +338,10 @@ export default function ReviewBrief() {
       </div>
 
       {/* Stat Cards */}
-      <div style={{ padding: '0 var(--gutter-lg)', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--gutter-lg)', marginTop: 'var(--space-md)' }}>
+      <div className="review-stats-grid" style={{ marginTop: 'var(--space-md)' }}>
         {statsList.map((s) => (
           <div key={s.label} className="review-stat-card">
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <span className="label-sm" style={{ textTransform: 'uppercase', letterSpacing: '0.02em', color: 'var(--on-surface-variant)', fontWeight: 500 }}>{s.label}</span>
               {s.icon && <span className="material-symbols-outlined" style={{ color: 'var(--secondary)', fontSize: 20 }}>{s.icon}</span>}
               {s.dotColor && <span style={{ width: 10, height: 10, borderRadius: '50%', background: s.dotColor }} />}
@@ -358,13 +358,13 @@ export default function ReviewBrief() {
       </div>
 
       {/* Main Grid Content */}
-      <div style={{ padding: 'var(--space-xl) var(--gutter-lg) 0', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'var(--gutter-lg)' }}>
+      <div className="layout-grid review-main-grid">
         
         {/* Left Column: Queue Items */}
-        <div style={{ gridColumn: 'span 7', display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+        <div className="col-7" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
           
           {/* Queue Header & Action Controls */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 var(--space-xs)', position: 'relative' }}>
+          <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', padding: '0 var(--space-xs)', position: 'relative' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
               <span className="headline-sm">Queue Items</span>
               <span className="code-sm" style={{ padding: '2px 8px', borderRadius: 'var(--radius-full)', background: 'var(--surface-container)', color: 'var(--on-surface-variant)', fontWeight: 600 }}>
@@ -506,7 +506,7 @@ export default function ReviewBrief() {
                 <div className="review-statement-accent" style={{ background: s.accent }} />
                 
                 {/* Header row of statement card */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-sm)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', gap: 'var(--space-sm)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', flexWrap: 'wrap' }}>
                     <span className={`badge ${s.status === 'Approved' ? 'badge-success' : s.status === 'Edited' ? 'badge-info' : (s.status === 'Unsupported Claim' || s.status === 'Rejected') ? 'badge-danger' : 'badge-warning'}`}>
                       <span className="dot" />
@@ -571,7 +571,7 @@ export default function ReviewBrief() {
                 </div>
 
                 {/* Action buttons row */}
-                <div style={{ paddingTop: 'var(--space-sm)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-sm)' }}>
+                <div style={{ paddingTop: 'var(--space-sm)', display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', gap: 'var(--space-sm)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', flexWrap: 'wrap' }}>
                     {(s.status === 'Needs Review' || s.status === 'Edited') && (
                       <>
@@ -661,9 +661,9 @@ export default function ReviewBrief() {
         </div>
 
         {/* Right Column: Edit Panel */}
-        <div style={{ gridColumn: 'span 5', display: 'flex', flexDirection: 'column' }}>
+        <div className="col-5" style={{ display: 'flex', flexDirection: 'column' }}>
           <div className="review-edit-panel">
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                   <div style={{ width: 28, height: 28, borderRadius: 'var(--radius-sm)', background: 'var(--primary-container)', color: 'var(--on-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -759,7 +759,7 @@ export default function ReviewBrief() {
 
             {/* Semantic Match Widget */}
             <div className="review-match-widget">
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} className="label-sm">
+              <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }} className="label-sm">
                 <span style={{ textTransform: 'uppercase', letterSpacing: '0.02em', fontWeight: 600 }}>Semantic Match Analysis</span>
                 <span className="code-sm" style={{ color: '#15803d', fontWeight: 600 }}>Passes Policy</span>
               </div>
@@ -791,9 +791,9 @@ export default function ReviewBrief() {
 
       {/* Sticky Bottom Footer & Progress */}
       <div className="review-sticky-footer">
-        <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--space-md)', width: '100%' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, minWidth: 280, flex: 1, maxWidth: 500 }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div className="review-footer-inner">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, minWidth: 0, flex: '1 1 16rem', maxWidth: 500 }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', gap: 4 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                 <span className="body-sm" style={{ fontWeight: 600 }}>Review Progress:</span>
                 <span className="code-sm" style={{ fontWeight: 600, color: 'var(--primary-container)' }}>

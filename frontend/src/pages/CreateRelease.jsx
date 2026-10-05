@@ -363,7 +363,7 @@ export default function CreateRelease() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2xl)' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', marginBottom: 6 }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
               <span className="badge badge-info">
                 <span className="dot" style={{ background: 'var(--primary)' }} />
                 PIPELINE: PROD-READY DRAFT
@@ -374,7 +374,7 @@ export default function CreateRelease() {
             <h1 className="headline-xl" style={{ letterSpacing: '-0.025em' }}>Create Release</h1>
             <p className="body-md" style={{ color: 'var(--secondary)', marginTop: 4 }}>Provide the release package that will be analyzed by the AI assistant.</p>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+          <div className="action-row">
             <button className="btn btn-secondary" onClick={loadTemplate}>
               <span className="material-symbols-outlined" style={{ fontSize: 18 }}>history</span>
               Load Template
@@ -386,8 +386,8 @@ export default function CreateRelease() {
           </div>
         </div>
 
-        <div className="grid" style={{ gridTemplateColumns: 'repeat(12, 1fr)', alignItems: 'start' }}>
-          <div style={{ gridColumn: 'span 8', display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
+        <div className="layout-grid" style={{ alignItems: 'start' }}>
+          <div className="col-main" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
             <div className={`create-section ${activeSection === 'metadata' ? 'active' : ''}`} onClick={() => setActiveSection('metadata')}>
               <div className="create-section-header">
                 <div className="create-section-title">
@@ -643,7 +643,7 @@ export default function CreateRelease() {
                 ))}
               </div>
               <div className="create-qa-passrate">
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }} className="label-sm">
+                <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: 4 }} className="label-sm">
                   <span style={{ color: 'var(--secondary)' }}>Pass Rate ({passRateLabel}%)</span>
                   <span className="code-sm" style={{ color: passRate >= 99 ? 'var(--tertiary-container)' : 'var(--error)' }}>
                     {passRate >= 99 ? 'Target Met: >99%' : 'Below target: >99%'}
@@ -809,7 +809,7 @@ export default function CreateRelease() {
             </div>
           </div>
 
-          <div style={{ gridColumn: 'span 4', position: 'sticky', top: 'var(--space-2xl)', display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
+          <div className="col-side create-side-col" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
             <div className="create-completeness">
               <div className="create-completeness-header">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>

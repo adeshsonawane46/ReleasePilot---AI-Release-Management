@@ -120,9 +120,9 @@ export default function FinalBrief() {
         </div>
       </header>
 
-      <div className="grid" style={{ gridTemplateColumns: 'repeat(12, 1fr)', alignItems: 'start' }}>
-        <article className="finalbrief-doc" style={{ gridColumn: 'span 8' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 'var(--space-md)' }}>
+      <div className="layout-grid" style={{ alignItems: 'start' }}>
+        <article className="finalbrief-doc col-main">
+          <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', paddingBottom: 'var(--space-md)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
               <span style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--tertiary)', display: 'inline-block' }} />
               <span className="code-sm" style={{ color: 'var(--secondary)', textTransform: 'uppercase', letterSpacing: '0.02em', fontWeight: 600 }}>Validated Engineering Manifest</span>
@@ -165,7 +165,7 @@ export default function FinalBrief() {
                       { name: 'Firefox v120', pct: 86, assertions: '19/22 assertions (3 skipped)' },
                     ].map((b) => (
                       <div key={b.name} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'var(--space-sm)', background: 'var(--surface-container-lowest)', borderRadius: 'var(--radius-lg)' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                           <span className="body-sm" style={{ fontWeight: 500 }}>{b.name}</span>
                           <span className="code-sm" style={{ color: 'var(--tertiary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
                             <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--tertiary)', display: 'inline-block' }} /> Passed
@@ -180,7 +180,7 @@ export default function FinalBrief() {
                   </div>
                 ) : section.num === '06' ? (
                   <div style={{ padding: 'var(--space-lg)', background: 'var(--surface-container-low)', borderRadius: 'var(--radius-lg)', display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }} className="code-sm">
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                       <span style={{ color: 'var(--secondary)', fontWeight: 500 }}>Database migration V24:</span>
                       <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--secondary)', display: 'flex', alignItems: 'center', gap: 4 }} onClick={() => showToast('Command copied')}>
                         <span className="material-symbols-outlined" style={{ fontSize: 15 }}>content_copy</span>
@@ -190,7 +190,7 @@ export default function FinalBrief() {
                     <div style={{ background: 'var(--surface-container-lowest)', padding: 'var(--space-sm)', borderRadius: 'var(--radius-sm)', fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--primary)' }}>
                       prisma migrate deploy
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', marginTop: 4 }}>
                       <span style={{ color: 'var(--secondary)', fontWeight: 500 }}>Environment variable flag:</span>
                     </div>
                     <div style={{ background: 'var(--surface-container-lowest)', padding: 'var(--space-sm)', borderRadius: 'var(--radius-sm)', fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', fontWeight: 500 }}>
@@ -228,9 +228,9 @@ export default function FinalBrief() {
           </footer>
         </article>
 
-        <aside style={{ gridColumn: 'span 4', display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)', position: 'sticky', top: 'var(--space-2xl)' }}>
+        <aside className="col-side finalbrief-side-col" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
           <div className="finalbrief-signoff">
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               <span className="label-sm" style={{ textTransform: 'uppercase', letterSpacing: '0.02em', color: 'var(--secondary)', fontWeight: 600 }}>Lead Sign-Off</span>
               <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--tertiary)', fontWeight: 500 }}>
                 <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--tertiary)' }} /> Authenticated
@@ -250,7 +250,7 @@ export default function FinalBrief() {
                 { label: 'Role Clearance:', value: 'SecOps / Release Level 4' },
                 { label: 'Signed At:', value: '2026-10-03 10:52 UTC' },
               ].map((row) => (
-                <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div key={row.label} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                   <span style={{ color: 'var(--secondary)' }}>{row.label}</span>
                   <span style={{ fontWeight: 500 }}>{row.value}</span>
                 </div>

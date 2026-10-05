@@ -47,8 +47,8 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  flex: 1;
-  min-width: 240px;
+  flex: 1 1 12rem;
+  min-width: 0;
 }
 .compare-swap-btn {
   display: flex;
@@ -56,6 +56,7 @@
   justify-content: center;
   gap: 4px;
   height: 40px;
+  flex-shrink: 0;
   padding: 0 var(--space-lg);
   border-radius: var(--radius-lg);
   background: var(--surface-container-low);
@@ -77,6 +78,7 @@
   justify-content: space-between;
   position: relative;
   overflow: hidden;
+  min-width: 0;
   transition: box-shadow 0.15s ease;
 }
 .compare-stat-card:hover {
@@ -109,6 +111,7 @@
   flex-direction: column;
   gap: var(--space-md);
   box-shadow: var(--shadow-sm);
+  min-width: 0;
   transition: all 0.15s ease;
 }
 .compare-stale-card.resolved {
@@ -145,11 +148,25 @@
 .compare-modal {
   background: var(--surface-container-lowest);
   width: 100%;
-  max-width: 512px;
+  max-width: min(512px, 100%);
+  max-height: min(88vh, 88dvh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
   padding: var(--space-xl);
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
+}
+@media (max-width: 640px) {
+  .compare-modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .compare-modal {
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    max-height: 92dvh;
+    padding-bottom: calc(var(--space-xl) + var(--safe-b));
+  }
 }

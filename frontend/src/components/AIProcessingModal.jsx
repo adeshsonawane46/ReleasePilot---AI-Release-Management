@@ -69,7 +69,7 @@ export default function AIProcessingModal({
       icon={status === 'analyzing' ? 'auto_awesome' : status === 'completed' ? 'task_alt' : status === 'failed' ? 'error' : 'neurology'}
       maxWidth={540}
       footer={
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 'var(--space-sm)', width: '100%' }}>
+        <div className="action-row" style={{ justifyContent: 'flex-end', width: '100%' }}>
           {status === 'idle' && (
             <>
               <button className="btn btn-secondary" onClick={onClose}>
@@ -130,8 +130,8 @@ export default function AIProcessingModal({
 
         {(status === 'analyzing' || status === 'completed') && (
           <div className="ai-processing-card" style={{ background: 'var(--surface-container-lowest)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', border: '1px solid var(--outline-variant)', boxShadow: 'var(--shadow-sm)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 'var(--space-md)', paddingBottom: 'var(--space-sm)', borderBottom: '1px solid var(--outline-variant)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-sm)', marginBottom: 'var(--space-md)', paddingBottom: 'var(--space-sm)', borderBottom: '1px solid var(--outline-variant)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', minWidth: 0 }}>
                 <span className={`ai-pulse-badge ${status === 'analyzing' ? 'pulsing' : ''}`} style={{ width: 10, height: 10, borderRadius: '50%', background: status === 'completed' ? 'var(--tertiary-container)' : 'var(--primary)' }} />
                 <span className="label-md" style={{ fontWeight: 600, letterSpacing: '0.02em', textTransform: 'uppercase', color: 'var(--on-surface)' }}>
                   {status === 'completed' ? 'AI Analysis Complete' : 'LangGraph Execution'}
@@ -151,17 +151,19 @@ export default function AIProcessingModal({
                   <div
                     key={step.id}
                     className={`ai-step-row ${isDone ? 'is-done' : isCurrent ? 'is-current' : 'is-pending'}`}
-                    style={{
+style={{
                       display: 'flex',
                       alignItems: 'center',
-                      justify: 'space-between',
+                      flexWrap: 'wrap',
+                      justifyContent: 'space-between',
+                      gap: 'var(--space-xs)',
                       padding: '8px 12px',
                       borderRadius: 'var(--radius-md)',
                       background: isCurrent ? 'var(--surface-container-low)' : 'transparent',
                       transition: 'all 0.2s ease',
                     }}
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', minWidth: 0 }}>
                       {isDone ? (
                         <span className="material-symbols-outlined" style={{ fontSize: 18, color: '#10B981', fontWeight: 'bold' }}>
                           check
@@ -213,18 +215,18 @@ export default function AIProcessingModal({
               <span className="material-symbols-outlined" style={{ color: '#10B981', fontSize: 20 }}>verified</span>
               <span className="label-md" style={{ fontWeight: 600 }}>Summary Findings</span>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-sm)', marginTop: 'var(--space-xs)' }}>
+            <div className="metric-grid" style={{ marginTop: 'var(--space-xs)' }}>
               <div style={{ background: 'var(--surface-container-lowest)', padding: '8px 12px', borderRadius: 'var(--radius-md)', textAlign: 'center' }}>
                 <span className="headline-sm" style={{ color: 'var(--primary)' }}>{findingsCount}</span>
-                <p className="body-sm" style={{ color: 'var(--secondary)', fontSize: 12 }}>Findings</p>
+                <p className="body-sm" style={{ color: 'var(--secondary)' }}>Findings</p>
               </div>
               <div style={{ background: 'var(--surface-container-lowest)', padding: '8px 12px', borderRadius: 'var(--radius-md)', textAlign: 'center' }}>
                 <span className="headline-sm" style={{ color: 'var(--error)' }}>{risksCount}</span>
-                <p className="body-sm" style={{ color: 'var(--secondary)', fontSize: 12 }}>Risks</p>
+                <p className="body-sm" style={{ color: 'var(--secondary)' }}>Risks</p>
               </div>
               <div style={{ background: 'var(--surface-container-lowest)', padding: '8px 12px', borderRadius: 'var(--radius-md)', textAlign: 'center' }}>
                 <span className="headline-sm" style={{ color: 'var(--secondary)' }}>{claimsCount}</span>
-                <p className="body-sm" style={{ color: 'var(--secondary)', fontSize: 12 }}>Unsupported Claims</p>
+                <p className="body-sm" style={{ color: 'var(--secondary)' }}>Unsupported Claims</p>
               </div>
             </div>
           </div>

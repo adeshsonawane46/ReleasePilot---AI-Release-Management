@@ -20,7 +20,7 @@ export default function ProgressRing({ value, size = 56, strokeWidth = 4, color 
         />
       </svg>
       {label && (
-        <span className="code-sm" style={{ position: 'absolute', fontWeight: 600, fontSize: size > 60 ? 12 : 9 }}>
+        <span className="code-sm" style={{ position: 'absolute', fontWeight: 600, fontSize: size > 60 ? '0.75rem' : '0.625rem' }}>
           {label}
         </span>
       )}
